@@ -9,6 +9,7 @@ import { useLocation } from "wouter";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Loader2, ArrowLeft } from "lucide-react";
 import { useLanguage } from "@/hooks/use-language";
+import { getLocalProfile, saveLocalProfile } from "@/lib/local-data";
 
 const getInitials = (email?: string) => {
   if (!email) return "U";
@@ -51,9 +52,19 @@ export default function Profile() {
             height: data.height?.toString() || "180",
             weight: data.weight?.toString() || "75",
           });
+          if (typeof data?.height === "number" && typeof data?.weight === "number") {
+            saveLocalProfile({ height: data.height, weight: data.weight });
+          }
+          return;
         }
+        throw new Error("Failed to load profile");
       } catch (error) {
         console.error("Failed to load profile:", error);
+        const fallback = getLocalProfile();
+        setFormData({
+          height: fallback.height.toString(),
+          weight: fallback.weight.toString(),
+        });
       } finally {
         setInitialLoading(false);
       }
@@ -112,11 +123,15 @@ export default function Profile() {
 
       setTimeout(() => setLocation("/"), 1500);
     } catch (error) {
+      saveLocalProfile({ height, weight });
       toast({
-        title: language === 'ar' ? "خطأ" : "Error",
-        description: error instanceof Error ? error.message : "An error occurred",
-        variant: "destructive",
+        title: language === 'ar' ? "نجح" : "Success",
+        description:
+          language === 'ar'
+            ? "تم حفظ البيانات محليًا"
+            : "Profile saved locally",
       });
+      setTimeout(() => setLocation("/"), 1500);
     } finally {
       setLoading(false);
     }
