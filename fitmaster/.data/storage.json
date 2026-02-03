@@ -1,0 +1,116 @@
+{
+  "workouts": [
+    [
+      "test-user",
+      [
+        {
+          "date": "2026-01-23T00:00:00.000Z",
+          "type": "Push",
+          "exercise": "Handstand Practice",
+          "sets": 3,
+          "reps": 10,
+          "minutes": 30,
+          "id": 3,
+          "user_id": "test-user"
+        },
+        {
+          "date": "2026-01-22T00:00:00.000Z",
+          "type": "Push",
+          "exercise": "Handstand Practice",
+          "sets": 3,
+          "reps": 10,
+          "minutes": 30,
+          "id": 2,
+          "user_id": "test-user"
+        },
+        {
+          "date": "2026-01-22T00:00:00.000Z",
+          "type": "Push",
+          "exercise": "Handstand Practice",
+          "sets": 3,
+          "reps": 10,
+          "minutes": 30,
+          "id": 4,
+          "user_id": "test-user"
+        },
+        {
+          "date": "2026-01-21T00:00:00.000Z",
+          "type": "Push",
+          "exercise": "Handstand Practice",
+          "sets": 3,
+          "reps": 10,
+          "minutes": 30,
+          "id": 5,
+          "user_id": "test-user"
+        }
+      ]
+    ]
+  ],
+  "calories": [
+    [
+      "test-user",
+      [
+        {
+          "date": "2026-01-22T00:00:00.000Z",
+          "caloriesIn": 2000,
+          "caloriesOut": 500,
+          "id": 3,
+          "user_id": "test-user"
+        },
+        {
+          "date": "2026-01-22T00:00:00.000Z",
+          "caloriesIn": 2000,
+          "caloriesOut": 500,
+          "id": 4,
+          "user_id": "test-user"
+        },
+        {
+          "date": "2026-01-21T00:00:00.000Z",
+          "caloriesIn": 2000,
+          "caloriesOut": 500,
+          "id": 5,
+          "user_id": "test-user"
+        }
+      ]
+    ]
+  ],
+  "progress": [
+    [
+      "test-user",
+      [
+        {
+          "date": "2026-01-23T00:00:00.000Z",
+          "weight": "75",
+          "pullupsMax": 55,
+          "dipsMax": 17,
+          "handstandSeconds": 74,
+          "id": 2,
+          "user_id": "test-user"
+        },
+        {
+          "date": "2026-01-22T00:00:00.000Z",
+          "weight": "75",
+          "pullupsMax": 44,
+          "dipsMax": 11,
+          "handstandSeconds": 55,
+          "id": 1,
+          "user_id": "test-user"
+        }
+      ]
+    ]
+  ],
+  "goals": [],
+  "profiles": [
+    [
+      "test-user",
+      {
+        "height": 185,
+        "weight": 70
+      }
+    ]
+  ],
+  "workoutCounter": 6,
+  "calorieCounter": 6,
+  "progressCounter": 3,
+  "goalCounter": 1
+}

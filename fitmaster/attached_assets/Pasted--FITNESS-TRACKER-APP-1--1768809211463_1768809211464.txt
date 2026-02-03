@@ -1,0 +1,206 @@
+.
+
+📱 FITNESS TRACKER APP
+(تتبع التمارين – السعرات – التقدم)
+1️⃣ الهدف من التطبيق
+
+تمكين المستخدم من:
+
+تسجيل التمارين اليومية
+
+حساب ساعات التدريب الأسبوعية
+
+تتبع Calories In / Calories Out
+
+معرفة العجز أو الفائض الحراري
+
+متابعة التطور البدني والمهارات
+
+عرض كلشي في Dashboard تفاعلي
+
+2️⃣ بنية التطبيق (App Architecture)
+Frontend (واجهة المستخدم)
+
+Flutter (Android / iOS)
+
+Material UI أو Cupertino
+
+Dark / Light Mode
+
+Backend (منطق + تخزين)
+
+Local: SQLite / Hive
+
+Cloud (اختياري): Firebase
+
+State Management: Provider / Riverpod
+
+3️⃣ واجهة المستخدم (UI / UX)
+🟦 الشاشة 1: Dashboard (الرئيسية)
+العناصر:
+🔹 Weekly Training Hours
+
+Card تعرض:
+
+مجموع الدقائق ÷ 60 = ساعات
+
+مصدر البيانات:
+
+Workouts Table
+
+🔹 Calories Summary
+
+Calories In
+
+Calories Out
+
+Balance = In − Out
+
+اللون:
+
+أخضر = فائض
+
+أحمر = عجز
+
+🔹 Pie Chart (توزيع التمارين)
+
+Strength
+
+Skills
+
+Cardio
+
+Mobility
+
+الحساب:
+
+(total minutes لكل نوع) ÷ (total minutes) × 100
+
+🔹 Bar Chart (Week 1 → Week 4)
+
+مجموع ساعات التدريب لكل أسبوع
+
+🟦 الشاشة 2: Add Workout
+المدخلات:
+الحقل	النوع
+Date	Date Picker
+Type	Dropdown (Push / Pull / Legs / Skills / Cardio / Mobility)
+Exercise	Text
+Sets	Number
+Reps	Number
+Minutes	Number
+المعالجة:
+
+Minutes تُخزن مباشرة
+
+تدخل في:
+
+Weekly Training Hours
+
+Pie Chart
+
+Bar Chart
+
+🟦 الشاشة 3: Add Calories
+المدخلات:
+الحقل	النوع
+Date	Date
+Calories In	Number
+Calories Out	Number
+الحساب:
+Balance = Calories In - Calories Out
+
+النتيجة:
+
+تُحدّث Dashboard تلقائياً
+
+🟦 الشاشة 4: Progress Tracker
+المتغيرات:
+المتغير	النوع
+Weight (kg)	Number
+Pull-ups Max	Number
+Dips Max	Number
+Handstand (seconds)	Number
+العرض:
+
+Line Chart لكل عنصر
+
+مقارنة أسبوعية / شهرية
+
+4️⃣ منطق الحسابات (Core Logic)
+🔥 Calories
+Daily Balance = Σ(In) − Σ(Out)
+Weekly Balance = مجموع 7 أيام
+
+🏋️ Training Time
+Weekly Hours = مجموع Minutes ÷ 60
+
+📊 Weekly Grouping
+
+الأسبوع يبدأ الإثنين
+
+كل تمرين مرتبط بتاريخ → Week Index
+
+5️⃣ التخزين والحفظ (SAVE SYSTEM)
+🗄️ قاعدة البيانات المحلية
+Table: workouts
+id
+date
+type
+exercise
+sets
+reps
+minutes
+
+Table: calories
+id
+date
+calories_in
+calories_out
+
+Table: progress
+id
+date
+weight
+pullups
+dips
+handstand
+
+🔐 الحفظ
+
+Auto-save عند كل إدخال
+
+يعمل بدون إنترنت
+
+Backup سحابي (اختياري)
+
+6️⃣ خصائص إضافية مهمة
+🎯 Goals
+
+هدف ساعات أسبوعية
+
+هدف وزن
+
+هدف Pull-ups
+
+🔔 Notifications
+
+تذكير بالتمرين
+
+تنبيه تجاوز العجز أو الفائض
+
+📤 Export
+
+CSV / PDF
+
+تقرير أسبوعي أو شهري
+
+7️⃣ تجربة المستخدم (UX)
+
+إدخال سريع
+
+رسوميات واضحة
+
+ألوان مختلفة لكل نوع تمرين
+
+تنقل سهل بين الشاشات
