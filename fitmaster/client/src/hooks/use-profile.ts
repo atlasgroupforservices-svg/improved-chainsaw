@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import { getLocalProfile, saveLocalProfile } from "@/lib/local-data";
 
 export interface ProfileData {
   height: number;
@@ -9,9 +10,17 @@ export function useProfile() {
   return useQuery<ProfileData>({
     queryKey: ["profile"],
     queryFn: async () => {
-      const response = await fetch("/api/profile");
-      if (!response.ok) throw new Error("Failed to fetch profile");
-      return response.json();
+      try {
+        const response = await fetch("/api/profile");
+        if (!response.ok) throw new Error("Failed to fetch profile");
+        const data = await response.json();
+        if (typeof data?.height === "number" && typeof data?.weight === "number") {
+          saveLocalProfile({ height: data.height, weight: data.weight });
+        }
+        return data;
+      } catch {
+        return getLocalProfile();
+      }
     },
     staleTime: 1000 * 60 * 5, // 5 minutes
     retry: 1,

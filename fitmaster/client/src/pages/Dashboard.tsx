@@ -49,6 +49,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { useState } from "react";
 import { queryClient } from "@/lib/queryClient";
 import { useLanguage } from "@/hooks/use-language";
+import { getLocalGoals } from "@/lib/local-data";
 
 export default function Dashboard() {
   // All hooks MUST be called at the top, before any conditionals
@@ -60,9 +61,13 @@ export default function Dashboard() {
   const { data: goalsData } = useQuery({
     queryKey: [api.goals.list.path],
     queryFn: async () => {
-      const res = await fetch(api.goals.list.path);
-      if (!res.ok) return [];
-      return await res.json();
+      try {
+        const res = await fetch(api.goals.list.path);
+        if (!res.ok) throw new Error("Failed to fetch goals");
+        return await res.json();
+      } catch {
+        return getLocalGoals();
+      }
     }
   });
   const [filter, setFilter] = useState<'day' | 'week' | 'month'>('week');
